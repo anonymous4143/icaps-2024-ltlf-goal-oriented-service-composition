@@ -3,13 +3,11 @@ import shutil
 import sys
 from pathlib import Path
 
-import pydot
 from pylogics.parsers import parse_ltl
 
 from examples.simple_garden.simple_garden_example import bot_0, GOAL_FORMULA
-from experiments.core import ActionMode, Heuristic
-from experiments.entrypoints._abstract_entrypoint import run_experiment
-from experiments.utils import run_command
+from experiments.core import ActionMode
+from experiments.handler import run_command
 from ltlf_goal_oriented_service_composition.rewrite_formula import rewrite
 from ltlf_goal_oriented_service_composition.to_pddl import _START_SYMB, services_to_pddl, final_services_condition
 from tutorial.rendering import service_to_graphviz

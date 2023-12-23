@@ -32,7 +32,6 @@ TB_encode() {
 
   python3 scripts/fix_tb_oneof.py --domain-file "${_DOMAIN_FILE%.pddl}_compiled.pddl";
 
-  echo "$FINAL_CONDITION"
   if [[ "$_ACTION_MODE" == "1" || "$_ACTION_MODE" == "2" ]]; then
     sed -i "s/(:goal (f_goal))/(:goal (and (f_goal) $FINAL_CONDITION))/g" "$_COMPILED_PROBLEM_FILE";
   elif [[ "$_ACTION_MODE" == "3" || "$_ACTION_MODE" == "4" ]]; then

@@ -2,12 +2,8 @@
 
 set -exuo pipefail
 
-run_mynd() {
-  local _ARGS="$3"
-  ./planners/mynd/translator-fond/translate.py "$1" "$2"
-  cd ./planners/mynd
-  ./mynd.sh -search aostar $_ARGS ../../output.sas
+cd ./planners/mynd && \
+  rm -f ./output.sas && \
+  ./translator-fond/translate.py "$1" "$2" && \
+  java -Xmx16g -cp target/mynd-1.0-SNAPSHOT.jar mynd.MyNDPlanner -search aostar ./output.sas ${@:3} && \
   cd ../../
-}
-
-run_mynd "$@"
